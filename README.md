@@ -1,12 +1,8 @@
 # aiRLOCK
 
-## About
-
 ## Design
 
-- **Lightweight**: 
-- **Ephemeral**: Changes are discarded automatically when the container stops. 
-  Work must be intentionally saved (committed out via git or otherwise copied to the permanent disk)
+- **Lightweight**
 - **No filesystem access**: The point is to prevent claude and other tools from being able to directly access your machine.
   As a result, we do not mount a volume.
 
@@ -24,18 +20,34 @@
   
 2. Build image
 
+Replace `image-name` with your desired image name.
+
 ```
-docker build -t test .
+docker build -t image-name .
 ```
 
 3. Run container
 
 ```
-docker run -it -p 3000:3000 --rm test
+docker run -it -p 3000:3000  test
 ```
 
-Flag explainer:
-
+| Flag | Description |
+| :--- | :---------- |
 | `-it` | Interactive mode with TTY |
 | `-p 3000:3000` | Expose any ports you want to use. |
 | `--rm` | Automatically removes the container when it stops. |
+
+4. Exit container
+
+With `ctrl + d`
+
+5. Additional terminals
+
+Open external terminal windows or splits, then run `docker exec -it <container-name> /bin/sh`
+
+6. Start container again
+
+```
+docker start -ai sw-docs
+```
