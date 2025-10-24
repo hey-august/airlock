@@ -1,10 +1,13 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /airlock
 
-RUN apk add --no-cache \
-    git \
-    nethogs \
-    curl
+RUN apt-get update && apt-get install -y \
+	git \ 
+	micro \
+	nethogs \
+	bash
 
-CMD ["/bin/sh"]
+RUN npm install -g @anthropic-ai/claude-code
+
+CMD ["/bin/bash"]
