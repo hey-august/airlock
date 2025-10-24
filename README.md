@@ -6,12 +6,12 @@
 - **No filesystem access**: The point is to prevent claude and other tools from being able to directly access your machine.
   As a result, we do not mount a volume.
 
-## Requirements
+## Quickstart
+
+### Requirements
 
 - Docker (or Podman)
 - Runtime - I recommend Colima, or you can use the runtime that comes with Docker Desktop
-
-## Quickstart
 
 ### 1. Start runtime
 
