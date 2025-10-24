@@ -2,52 +2,57 @@
 
 ## Design
 
-- **Lightweight**
+- **Lightweight**: Uses the official `node:20-slim` Debian-based image.
 - **No filesystem access**: The point is to prevent claude and other tools from being able to directly access your machine.
   As a result, we do not mount a volume.
 
 ## Requirements
 
 - Docker (or Podman)
-- Runtime: I recommend Colima, or you can use the runtime that comes with Docker Desktop
+- Runtime - I recommend Colima, or you can use the runtime that comes with Docker Desktop
 
 ## Quickstart
 
-1. Start runtime
+### 1. Start runtime
 
-  - Docker Desktop: Just open the application
+  - Docker Desktop: Open the application and leave it running
   - Colima: Run `colima start`
   
-2. Build image
+### 2. Build image
 
-Replace `image-name` with your desired image name.
+Run this command in the same directory as the `Dockerfile`.
 
-```
-docker build -t image-name .
-```
+`docker build -t airlock .`
 
-3. Run container
+Replace `airlock` with your desired image name, if different.
 
-```
-docker run -it -p 3000:3000  test
-```
+### 3. Create and run container
+
+`docker run -it -p 3000:3000 --name <container-name> airlock`
+
+> [!IMPORTANT]  
+> Replace `<container-name>` with the name of the project for which you intend to use this container.
 
 | Flag | Description |
 | :--- | :---------- |
 | `-it` | Interactive mode with TTY |
 | `-p 3000:3000` | Expose any ports you want to use. |
-| `--rm` | Automatically removes the container when it stops. |
+| `--rm` | **Optional, for emphemeral containers**: Automatically removes the container when it stops. Not recommended for this use case as you'd need to reauthenticate Claude Code every time you ran the container. |
 
-4. Exit container
+### 4. Exit container
 
-With `ctrl + d`
+Use `exit` or `ctrl + d` to exit the shell and stop the container.
 
-5. Additional terminals
+Run `colima stop` (or close Docker Desktop) to stop the runtime.
 
-Open external terminal windows or splits, then run `docker exec -it <container-name> /bin/sh`
+### 5. Additional terminals
 
-6. Start container again
+Open an external terminal window or split, then run:
 
-```
-docker start -ai sw-docs
-```
+`docker exec -it <container-name> /bin/sh`
+
+### 6. Start container again
+
+Once your container has been built, you can start and re-enter it at any time.
+
+`docker start -ai <container-name>`
