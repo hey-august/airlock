@@ -36,8 +36,7 @@ Replace `airlock` with your desired image name, if different.
 | Flag | Description |
 | :--- | :---------- |
 | `-it` | Interactive mode with TTY |
-| `-p 3000:3000` | Expose any ports you want to use. |
-| `--rm` | **Optional, for emphemeral containers**: Automatically removes the container when it stops. Not recommended for this use case as you'd need to reauthenticate Claude Code every time you ran the container. |
+| `-p 3000:3000` | Expose any ports you want to use for development. |
 
 ### 4. Exit container
 
