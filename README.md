@@ -48,10 +48,22 @@ Run `colima stop` (or close Docker Desktop) to stop the runtime.
 
 Open an external terminal window or split, then run:
 
-`docker exec -it <container-name> /bin/sh`
+`docker exec -it <container-name> /bin/bash`
+
+You can safely `exit` each terminal independently of one another.
 
 ### 6. Start container again
 
 Once your container has been built, you can start and re-enter it at any time.
 
 `docker start -ai <container-name>`
+
+## Notes
+
+There are lots of "fun" things you run into when using this setup.
+After all, you are switching your workflow over to a fresh Linux install!
+
+Here is an incomplete list:
+
+- Set git author identity (email and name)
+- Authentication with git in general
