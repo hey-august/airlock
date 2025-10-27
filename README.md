@@ -8,9 +8,9 @@
 
 ## Quickstart
 
-### Requirements
+**Requirements**
 
-- Docker (or Podman)
+- Docker CLI (or Podman)
 - Runtime - I recommend Colima, or you can use the runtime that comes with Docker Desktop
 
 ### 1. Start runtime
