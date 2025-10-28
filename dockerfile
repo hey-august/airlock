@@ -5,6 +5,7 @@ WORKDIR /airlock
 RUN apt-get update && apt-get install -y \
 	git \ 
 	tmux \
+	curl \
 	micro \
 	nethogs \
 	bash
