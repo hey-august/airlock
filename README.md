@@ -65,6 +65,59 @@ Once your container has been built, you can start and re-enter it at any time.
 
 `docker start -ai <container-name>`
 
+## Usage
+
+My workflow for this setup is to mostly treat the container as an emphemeral convenience.
+As I discover new use cases and needs,
+
+However, the beauty of working out of a Docker container is that it's portable!
+You could deploy this anywhere you want, SSH into it, and pick up exactly where you left off.
+
+### Git
+
+Create an SSH key:
+
+```
+ssh-keygen -t ed25519 -C "text comment"
+```
+
+Save it with a passkey of your choice, then run this and copy the entire results.
+This is your public key.
+
+```
+cat /root/.ssh/id_ed25519.pub
+```
+
+### Claude Code
+
+Run `claude` to setup and authenticate Claude as normal.
+
+## Changes and updates
+
+You can add lots of functionality to the container without a rebuild.
+After all, we do have 2 full package managers and all of Debian at our disposal!
+
+However, it's probably inevitable that you'll need to start fresh at some point.
+Here are some examples of changes that would require an image rebuild:
+
+### Image changes
+
+	- Switching the base image
+	- Changing the working directory
+
+### Runtime parameters
+
+Runtime parameters don't require a rebuilt image, but do require a new container:
+
+	- Adding more RAM
+	- Exposing different ports
+	- Changing port mappings
+	- Renaming the container
+	- Adding volume mounts
+	- Changing CPU limits (not)
+
+---
+
 ## Notes
 
 There are lots of "fun" things you run into when using this setup.
