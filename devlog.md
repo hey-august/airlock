@@ -1,6 +1,21 @@
 # Devlog
 
+## Todo
+
+	- [ ] Test and write up usage with VSCode DevContainers extension
+	- [ ] Add "development servers" section to readme
+	- [ ] Fix Homebrew install (not consistently working)
+	- [x] Allocate more memory
+
+---
+
 ## 30-10-2025
+
+Localhost isn't forwarded automatically, so my Docusaurus dev server at
+`http://localhost:3000` was inaccessible outside the container.
+This is a feature of Docker's network isolation.
+
+Fixed by adding `--host 0.0.0.0` to my `yarn start` command.
 
 The image build was failing at step 5/7 with this message:
 
