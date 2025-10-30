@@ -1,5 +1,17 @@
 # Devlog
 
+## 30-10-2025
+
+The image build was failing at step 5/7 with this message:
+
+```
+/bin/bash: brew: No such file or directory
+The command '/bin/sh -c /bin/bash brew install lazygit' returned a non-zero code: 127
+```
+
+Looks like the image builds in an 'intermediate container' until it succeeds,
+at which point it is tagged with the provided name.
+
 ## 29-10-2025
 
 Homebrew warns the following on startup:
