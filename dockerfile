@@ -2,6 +2,8 @@ FROM node:20-slim
 
 WORKDIR /airlock
 
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+
 # install standard CLI tools
 RUN apt-get update && apt-get install -y \
 	git \ 
