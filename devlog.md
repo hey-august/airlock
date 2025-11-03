@@ -2,12 +2,21 @@
 
 ## Todo
 
+	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
+	- [ ] fix font symbols
 	- [ ] Test and write up usage with VSCode DevContainers extension
 	- [ ] Add "development servers" section to readme
 	- [ ] Fix Homebrew install (not consistently working)
 	- [x] Allocate more memory
 
 ---
+
+## 31-10-2025 🎃
+
+Ran `locale` and found that everything was set to basic POSIX, 
+which maybe explains the lack of Unicode symbol support.
+
+Adding this to Dockerfile: `ENV LANG=C.UTF-8 LC_ALL=C.UTF-8`
 
 ## 30-10-2025
 
