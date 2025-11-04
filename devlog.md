@@ -2,6 +2,11 @@
 
 ## Todo
 
+    - [ ] 
+    - [ ] 
+    - [ ] 
+    - [ ] 
+    - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
 	- [ ] fix font symbols
 	- [ ] Test and write up usage with VSCode DevContainers extension
@@ -10,6 +15,15 @@
 	- [x] Allocate more memory
 
 ---
+
+## 4-11-2025
+
+Troubleshooting the unicode symbols issue.
+
+|               | Normal environment | Within Docker     |
+| ------------- | ------------------ | ----------------- |
+| Normal shell  | Correct symbols    | Correct           |
+| Within tmux   | Correct            | Incorrect symbols |
 
 ## 31-10-2025 🎃
 
