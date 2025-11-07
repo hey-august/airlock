@@ -23,7 +23,9 @@
 
 Run this command in the same directory as the `Dockerfile`.
 
-`docker build -t airlock .`
+```sh
+docker build -t airlock .
+```
 
 > [!WARNING]  
 > If anything fails in the image build, the image won't be correctly tagged with the 'airlock' name,
@@ -33,22 +35,28 @@ Replace `airlock` with your desired image name, if different.
 
 ### 3. Create and run container
 
-`docker run -it -m 8g -p 3000:3000 --name <container-name> airlock`
+```sh
+docker run -it -m 8g -p 3000:3000 --name <container-name> airlock
+```
 
 > [!IMPORTANT]  
 > Replace `<container-name>` with the name of the project for which you intend to use this container.
 
+#### Explanation of command
+
 | Flag | Description |
 | :--- | :---------- |
 | `-it` | Interactive mode with TTY |
-| `-m` | Amount of RAM to allocate to container. In most cases, this should be the same amount given to the VM in the first step. |
+| `-m 8` | Amount of RAM to allocate to container. In most cases, this should be the same amount given to the VM in the first step. |
 | `-p 3000:3000` | Expose any ports you want to use for development. |
 
 ### 4. Additional terminals
 
 Open an external terminal window or split, then run:
 
-`docker exec -it <container-name> /bin/bash`
+```sh
+docker exec -it <container-name> /bin/bash
+```
 
 You can safely `exit` each terminal independently of one another.
 
@@ -63,12 +71,14 @@ Run `colima stop` (or close Docker Desktop) to stop the runtime.
 Once your container has been built, you can start and re-enter it at any time.
 (At least, any time your VM is running ;))
 
-`docker start -ai <container-name>`
+```
+docker start -ai <container-name>
+```
 
 ## Usage
 
 My workflow for this setup is to mostly treat the container as an emphemeral convenience.
-As I discover new use cases and needs,
+As I discover new use cases and needs, I modify the container, 
 
 However, the beauty of working out of a Docker container is that it's portable!
 You could deploy this anywhere you want, SSH into it, and pick up exactly where you left off.
@@ -90,7 +100,20 @@ cat /root/.ssh/id_ed25519.pub
 
 ### Claude Code
 
+The Dockerfile installed Claude Code for you.
+
 Run `claude` to setup and authenticate Claude as normal.
+
+Once Claude has been authenticated, you can copy its config out of the container with the following command.
+This way, you can copy in your auth after future image rebuilds.
+
+```sh
+# Copy entire .claude folder
+docker cp {container-name}:/root/.claude ./claude-config/
+
+# Copy auth only
+docker cp {container-name}:/root/.claude/.credentials.json ./claude-config/
+```
 
 ## Changes and updates
 
