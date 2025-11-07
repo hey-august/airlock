@@ -1,4 +1,4 @@
-# aiRLOCK
+# `AI`rlock
 
 ## Design
 
