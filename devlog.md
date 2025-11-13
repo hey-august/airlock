@@ -5,7 +5,7 @@
     - [ ] 
     - [ ] 
     - [ ] 
-    - [ ] 
+    - [ ] Why doesn't `brew` work in fish shell?
     - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
 	- [ ] fix font symbols
@@ -15,6 +15,20 @@
 	- [x] Allocate more memory
 
 ---
+
+## 13-11-2025
+
+Created the `al` fish function to quickly add new terminals:
+
+```fish
+function al
+    if test (count $argv) -eq 0
+        echo "Usage: al <container-name>"
+        return 1
+    end
+    docker exec -it $argv /home/linuxbrew/.linuxbrew/bin/fish
+end
+```
 
 ## 4-11-2025
 
