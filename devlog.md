@@ -8,13 +8,22 @@
     - [ ] Why doesn't `brew` work in fish shell?
     - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
-	- [ ] fix font symbols
+	- [ ] fix unicode symbols not working in tmux
 	- [ ] Test and write up usage with VSCode DevContainers extension
 	- [ ] Add "development servers" section to readme
 	- [ ] Fix Homebrew install (not consistently working)
 	- [x] Allocate more memory
 
 ---
+
+## 17-11-2025
+
+Turns out
+[this StackExchange thread](https://askubuntu.com/questions/410048/utf-8-character-not-showing-properly-in-tmux)
+(remember StackExchange?) had the answer to the tmux Unicode issue.
+Run tmux with the `-u` flag to force it to display Unicode symbols.
+There's probably a way to fix this with environment variables, but I've been down that road before without success.
+For now, I'm just aliasing `tmux` to `tmux -u`.
 
 ## 13-11-2025
 
