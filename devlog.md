@@ -3,8 +3,8 @@
 ## Todo
 
     - [ ] 
-    - [ ] 
-    - [ ] 
+    - [ ] Micro text editor doesn't integrate with system clipboard within container
+    	- it's actually impossible to copy text out of Micro at all, you need a workaround like `cat {filename}`
     - [ ] Why doesn't `brew` work in fish shell?
     - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
