@@ -2,17 +2,20 @@
 
 ## Todo
 
-    - [ ] 
-    - [ ] Micro text editor doesn't integrate with system clipboard within container
+    - [ ] Micro text editor doesn't correctly integrate with system clipboard within container
     	- it's actually impossible to copy text out of Micro at all, you need a workaround like `cat {filename}`
-    - [ ] Why doesn't `brew` work in fish shell?
     - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
 	- [ ] fix unicode symbols not working in tmux
-	- [ ] Test and write up usage with VSCode DevContainers extension
+	- [ ] Set up VSCode DevContainers extension
+	  - [ ] Add to readme
 	- [ ] Add "development servers" section to readme
 	- [ ] Fix Homebrew install (not consistently working)
-	- [x] Allocate more memory
+	  - Seems like Homebrew doesn't like being run as root user. Need to create a 'brew' user and install Homebrew with that.
+	- [ ] Convert fish functions to shell scripts
+	- [x] Set up SSH agent forwarding
+	  - [ ] Add to readme
+	- [x] Allocate more memory to VM and container
 
 ---
 
@@ -45,6 +48,10 @@ Next, create the container. These two commands worked for me:
 set COLIMA_SSH_AUTH_SOCK $(colima ssh eval 'echo $SSH_AUTH_SOCK')
 docker run -it -m 8g -p 3000:3000 -v $COLIMA_SSH_AUTH_SOCK:$COLIMA_SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$COLIMA_SSH_AUTH_SOCK --name <container> airlock
 ```
+
+Referenced these resources:
+- https://github.com/abiosoft/colima/issues/127#issuecomment-1014474574
+- https://github.com/gustavoguarda/ssh-agent-forward-colima/blob/main/docker-compose.yml
 
 1. Inside the container, test that the ssh-agent is being forwarded:
 
