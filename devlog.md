@@ -16,6 +16,46 @@
 
 ---
 
+## 20251205
+
+Working on a better system for SSH.
+
+1. Create dedicated keypair for container
+
+1. Start ssh-agent:
+
+	- Fish: `eval (ssh-agent -c)`
+	- Bash: `eval "$(ssh-agent -s)"`
+
+1. Add the key to the agent, and verify it's available to the host:
+
+`ssh-add ~/.ssh/keyname`
+
+`ssh-add -l`
+
+1. Start docker container with mounted socket
+
+This is where things got tricky. 
+
+First, you need to run colima with `--ssh-agent` to enable agent forwarding.
+
+Next, create the container. These two commands worked for me:
+
+```
+set COLIMA_SSH_AUTH_SOCK $(colima ssh eval 'echo $SSH_AUTH_SOCK')
+docker run -it -m 8g -p 3000:3000 -v $COLIMA_SSH_AUTH_SOCK:$COLIMA_SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$COLIMA_SSH_AUTH_SOCK --name <container> airlock
+```
+
+1. Inside the container, test that the ssh-agent is being forwarded:
+
+`ssh-add -l`
+
+Then test authentication with Github:
+
+`ssh -T git@github.com`.
+
+Success!
+
 ## 17-11-2025
 
 Turns out
