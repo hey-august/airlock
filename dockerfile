@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 	# && rm -rf /var/lib/apt/lists/*
 
 # install Homebrew
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Homebrew setup
 # RUN /bin/bash echo >> /root/.bashrc \
