@@ -2,9 +2,9 @@
 
 ## Todo
 
-    - [ ] Micro text editor doesn't correctly integrate with system clipboard within container
-    	- it's actually impossible to copy text out of Micro at all, you need a workaround like `cat {filename}`
-    - [ ] Setup Brewfile
+  - [ ] Micro text editor doesn't correctly integrate with system clipboard within container
+  	- it's actually impossible to copy text out of Micro at all, you need a workaround like `cat {filename}`
+  - [ ] Setup Brewfile
 	- [ ] Figure out why `cd` by itself sends you to an empty dir from which there is no return
 	- [ ] fix unicode symbols not working in tmux
 	- [ ] Set up VSCode DevContainers extension
@@ -13,6 +13,7 @@
 	- [ ] Fix Homebrew install (not consistently working)
 	  - Seems like Homebrew doesn't like being run as root user. Need to create a 'brew' user and install Homebrew with that.
 	- [ ] Convert fish functions to shell scripts
+	- [ ] Make it easier to copy stuff into and out of container
 	- [x] Set up SSH agent forwarding
 	  - [ ] Add to readme
 	- [x] Allocate more memory to VM and container
