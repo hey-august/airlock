@@ -46,8 +46,14 @@ First, you need to run colima with `--ssh-agent` to enable agent forwarding.
 Next, create the container. These two commands worked for me:
 
 ```
+# Create a new environment variable with colima's current ssh socket
 set COLIMA_SSH_AUTH_SOCK $(colima ssh eval 'echo $SSH_AUTH_SOCK')
+```
+
+```
+# Pass that environment variable into the container at start
 docker run -it -m 8g -p 3000:3000 -v $COLIMA_SSH_AUTH_SOCK:$COLIMA_SSH_AUTH_SOCK -e SSH_AUTH_SOCK=$COLIMA_SSH_AUTH_SOCK --name <container> airlock
+# Yes this command is huge
 ```
 
 Referenced these resources:
