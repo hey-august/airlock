@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 	tmux \
 	curl \
 	micro \
-	procps \
+	fish \
 	bash
 
 	# Uncomment the below line if you want to clean up package lists
@@ -30,6 +30,6 @@ RUN apt-get update && apt-get install -y \
 # RUN /bin/bash brew install lazygit
 
 # install Claude Code
-RUN npm install -g @anthropic-ai/claude-code
+# RUN npm install -g @anthropic-ai/claude-code
 
 CMD ["/bin/bash"]
