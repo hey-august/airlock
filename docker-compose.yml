@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  airlock:
+    build: .  # Builds from current directory Dockerfile
+    container_name: airlock  # Custom name for easy access
+    
+    # Resource limits
+    mem_limit: 16g
+    
+    # Port mappings
+    ports:
+      - "3000-3015:3000-3015"  # App ports range
+      - "9229:9229"            # Node debugger
+    
+    # Interactive terminal
+    stdin_open: true  # Keeps STDIN open for typing
+    tty: true         # Allocates pseudo-TTY
+    
+    working_dir: /airlock
