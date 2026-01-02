@@ -18,3 +18,4 @@ services:
     tty: true         # Allocates pseudo-TTY
     
     working_dir: /airlock
+
