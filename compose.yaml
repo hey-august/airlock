@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   airlock:
     build: .  # Builds from current directory Dockerfile
