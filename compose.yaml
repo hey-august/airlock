@@ -1,10 +1,15 @@
 services:
   airlock:
-    build: .  # Builds from current directory Dockerfile
+    build: .                 # Builds from current directory Dockerfile
     container_name: airlock  # Custom name for easy access
+    hostname: airlock        # For a cleaner prompt
+    user: dev
     
-    # Resource limits
+    # Memory management
     mem_limit: 16g
+    mem_reservation: 12g      # Soft limit - Docker will try to keep it here
+    memswap_limit: 20g       # mem + swap total (gives 4g swap headroom)
+    oom_kill_disable: false  # Better to kill a process than freeze
     
     # Port mappings
     ports:
@@ -14,6 +19,8 @@ services:
     # Interactive terminal
     stdin_open: true  # Keeps STDIN open for typing
     tty: true         # Allocates pseudo-TTY
-    
     working_dir: /airlock
 
+    # Better handling of signals for cleanup
+    stop_grace_period: 30s
+    init: true  # Runs tini - reaps zombie processes, helps with orphans

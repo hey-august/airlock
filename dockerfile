@@ -1,8 +1,5 @@
 FROM node:20-slim
 
-ENV HOME=/airlock
-WORKDIR /airlock
-
 # Set UTF
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
@@ -18,8 +15,23 @@ RUN apt-get update && apt-get install -y \
 	micro \
 	fish \
 	bash \
+	procps \
+	htop \
 	# Clean up package lists
 	&& rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd -m -s /bin/fish -d /airlock dev
+
+# Set ownership of workspace
+RUN mkdir -p /airlock && chown dev:dev /airlock
+
+# Node memory limits
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+USER dev
+WORKDIR /airlock
+ENV HOME=/airlock
 
 # Homebrew setup
 # --------------
@@ -37,4 +49,4 @@ RUN apt-get update && apt-get install -y \
 # install Claude Code
 # RUN npm install -g @anthropic-ai/claude-code
 
-CMD ["bash"]
+CMD ["fish"]
