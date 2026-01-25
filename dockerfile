@@ -1,4 +1,4 @@
-FROM node:20-slim
+FROM node:24-slim
 
 # Set UTF
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -20,31 +20,28 @@ RUN apt-get update && apt-get install -y \
 	# Clean up package lists
 	&& rm -rf /var/lib/apt/lists/*
 
+# Node memory limits
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Create non-root user
 RUN useradd -m -s /bin/fish -d /airlock dev
 
 # Set ownership of workspace
 RUN mkdir -p /airlock && chown dev:dev /airlock
 
-# Node memory limits
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# Prep Homebrew directory (Homebrew can't run as root, but dev can't create this directory)
+RUN mkdir -p /home/linuxbrew/.linuxbrew && chown -R dev:dev /home/linuxbrew
 
 USER dev
 WORKDIR /airlock
 ENV HOME=/airlock
 
-# Homebrew setup
-# --------------
-# turned off, currently failing for some reason
-# install Homebrew
-# RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# RUN /bin/bash echo >> /root/.bashrc \
-# 	echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc \
-# 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 
+# install and setup homebrew
+RUN NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+ENV PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
 
 # install packages that are in Homebrew but not apt
-# RUN /bin/bash brew install lazygit
+# RUN brew install lazygit
 
 # install Claude Code
 # RUN npm install -g @anthropic-ai/claude-code
