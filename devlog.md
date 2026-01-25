@@ -37,8 +37,17 @@ as root.
 
 ### SSH
 
-I've landed on a solution that I'm happy with for SSH. I keep a dedicated
-keypair on my host, then copy it in to `~/.ssh` (in my case, )
+I've landed on a solution that I'm happy with for SSH. 
+I keep a dedicated keypair on my host, 
+then copy it in to `~/.ssh/` (in my case, `/airlock/.ssh/`.)
+
+I **do not** add the SSH key to ssh-agent. 
+The passphrase lives only in my brain (and my host machine password manager).
+Some might find this inconvenient, 
+but I prefer to categorically prevent agents like Claude
+from being able to perform destructive git actions on my behalf.
+Diffs are fine - pulls and pushes I do myself.
+ssh-agent is trivial to set up if you want to make a different convenience-security compromise.
 
 ### Docker Compose
 
