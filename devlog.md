@@ -2,25 +2,23 @@
 
 ## Todo
 
-- [ ] Micro text editor doesn't correctly integrate with system clipboard within
-      container
+- [ ] Fix Micro text editor system clipboard integration
   - it's actually impossible to copy text out of Micro at all, you need a
     workaround like `cat {filename}`
 - [ ] Setup Brewfile
-- [ ] Figure out why `cd` by itself sends you to an empty dir from which there
-      is no return
-- [ ] fix unicode symbols not working in tmux
-- [ ] Set up VSCode DevContainers extension
-  - [ ] Add to readme
+- [ ] Convert fish functions to shell scripts
 - [ ] Add "development servers" section to readme
-- [ ] Fix Homebrew install (not consistently working)
+- [x] fix unicode symbols not working in tmux
+  - [ ] Document
+- [x] Set up VSCode DevContainers extension
+  - [ ] Add to readme
+- [x] Fix Homebrew install (not consistently working)
   - Seems like Homebrew doesn't like being run as root user. Need to create a
     'brew' user and install Homebrew with that.
-- [ ] Convert fish functions to shell scripts
-- [ ] Make it easier to copy stuff into and out of container
-- [ ] Test
-- [x] Set up SSH agent forwarding
-  - [ ] Add to readme
+- [x] Figure out why `cd` by itself sends you to an empty dir from which there
+      is no return
+- [x] Test SSH agent forwarding
+  - Not pursuing this at the moment. See **SSH** in **20260123**.
 - [x] Allocate more memory to VM and container
 
 ---
@@ -48,6 +46,12 @@ but I prefer to categorically prevent agents like Claude
 from being able to perform destructive git actions on my behalf.
 Diffs are fine - pulls and pushes I do myself.
 ssh-agent is trivial to set up if you want to make a different convenience-security compromise.
+
+#### Why not forward the SSH agent? 
+Colima provisions the SSH agent socket dynamically which makes it a pain to forward. 
+It's a lot easier to copy in keys and simply not add the passphrase.
+I don't run claude as root, so it doesn't have read permissions on the keys.
+Even if it did, my passphrase is not stored anywhere in the container.
 
 ### Docker Compose
 
