@@ -10,6 +10,7 @@
 - [ ] Add "development servers" section to readme
 - [x] fix unicode symbols not working in tmux
   - [ ] Document
+- [ ] Test Remote SSH extension VS dev containers
 - [x] Set up VSCode DevContainers extension
   - [ ] Add to readme
 - [x] Fix Homebrew install (not consistently working)
@@ -29,9 +30,9 @@ Lots of updates from the last month or so!
 
 ### Dockerfile
 
-**User management:** I now create a `dev` user without root privileges, and
-switch to that user after setup. I did this because Homebrew doesn't like to run
-as root.
+**User management:** I now create a `dev` user without root privileges,
+and switch to that user after setup.
+I did this because Homebrew refuses to run as root.
 
 ### SSH
 
@@ -52,6 +53,18 @@ Colima provisions the SSH agent socket dynamically which makes it a pain to forw
 It's a lot easier to copy in keys and simply not add the passphrase.
 I don't run claude as root, so it doesn't have read permissions on the keys.
 Even if it did, my passphrase is not stored anywhere in the container.
+
+You have to change the ownership of the keys to the `dev` user.
+Do this as root from the host with:
+
+```
+docker compose exec -u root me fish		# new terminal 
+chown -hR dev:dev .ssh/								
+```
+
+### Homebrew
+
+With users figured out, Homebrew can now install itself. :)
 
 ### Docker Compose
 

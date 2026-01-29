@@ -15,7 +15,7 @@ services:
     memswap_limit: 20g          # - mem + swap total (gives 4g swap headroom)
     oom_kill_disable: false     # - Better to kill a process than freeze
     stop_grace_period: 30s      #
-    init: true                  # - Run tini - reaps zombie processes, lhelps with orphans
+    init: true                  # - Run tini - reaps zombie processes, helps with orphans
     #                           #
     # terminal                  #
     stdin_open: true            # - Keep STDIN open
