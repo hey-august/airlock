@@ -34,13 +34,13 @@ The `compose.yaml` file allocates 16g RAM, with a soft limit of 12g and 4g of sw
 
 Run this command in the same directory as the `Dockerfile`.
 
-#### a. WIth `docker compose`
+#### a. With Compose
 
 I prefer this method, as it uses easily stored and versioned compose.yaml files
 instead of long, fragile `docker` commands.
 
 ```sh
-docker compose build
+docker-compose build
 ```
 
 #### b. With `docker`
@@ -58,18 +58,18 @@ Replace `airlock` with your desired image name, if different.
 
 ### 3. Create and run container
 
-#### a. With Docker Compose
+#### a. With Compose
 
 Start the container in detached mode with a specified profile.
 
 ```
-docker compose --profile {profile} up -d
+docker-compose --profile {profile} up -d
 ```
 
 I have two profiles, `work` and `me`. For this example, let's start the `me` profile:
 
 ```
-docker compose --profile me up -d
+docker-compose --profile me up -d
 ```
 
 #### b. With `docker`
@@ -98,13 +98,13 @@ docker run -it -m 8g -p 3000:3000 --name {container-name} airlock
 With your chosen profile already running detached, run:
 
 ```
-docker compose exec {profile} {shell}
+docker-compose exec {profile} {shell}
 ```
 
 In my case, I want to create a terminal in the `me` profile running `fish` shell:
 
 ```
-docker compose exec me fish
+docker-compose exec me fish
 ```
 
 Which has a kind of piratical ring to it.
