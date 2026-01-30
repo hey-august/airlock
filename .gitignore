@@ -1,6 +1,9 @@
 # Claude Code stuff
 .claude
 
+# Secrets
+secrets
+
 # Logs
 logs
 *.log
