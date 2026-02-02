@@ -24,6 +24,35 @@
 
 ---
 
+## 20260202
+
+When I compose exec into my 'work' profile (below) in macOS Terminal, why is it installing Claude code every time? 😭
+
+```
+august@m2 airlock % docker compose exec work fish
+Setting up Claude Code...
+                                                                                                                                                                                                                    
+✔ Claude Code successfully installed!                                                                                                                                                                               
+                                                                                                                                                                                                                    
+  Version: 2.1.29                                                                                                                                                                                                   
+                                                                                                                                                                                                                    
+  Location: ~/.local/bin/claude                                                                                                                                                                                     
+                                                                                                                                                                                                                    
+                                                                                                                                                                                                                    
+  Next: Run claude --help to get started                                                                                                                                                                            
+                                                                                                                                                                                                                    
+⚠ Setup notes:                                                                                                                                                                                                      
+  • Native installation exists but ~/.local/bin is not in your PATH. Run:                                                                                                                                           
+                                                                                                                                                                                                                    
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> your shell config file && source your shell config file                                                                                                            
+                                                                                                                                                                                                                    
+
+✅ Installation complete!
+
+Welcome to fish, the friendly interactive shell
+Type help for instructions on how to use fish
+```
+
 ## 20260123
 
 Lots of updates from the last month or so!
