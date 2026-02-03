@@ -6,6 +6,8 @@ end
 export PATH="$HOME/.local/bin:$PATH"
 
 alias monet="claude --dangerously-skip-permissions"
+alias lg="lazygit"
+alias spawn="source ~/.config/fish/config.fish && echo 'sourced ~/.config/fish/config.fish'"
 
 # Setup tere explorer
 function tere
