@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 alias monet="claude --dangerously-skip-permissions"
 alias lg="lazygit"
 alias spawn="source ~/.config/fish/config.fish && echo 'sourced ~/.config/fish/config.fish'"
+set TERM=xterm-256color
 
 # Setup tere explorer
 function tere
@@ -17,5 +18,5 @@ end
 
 # there are many mkcd functions, but this one is mine
 function mkcd
-  mkdir $argv && cd $argv
+    mkdir $argv && cd $argv
 end
