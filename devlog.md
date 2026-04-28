@@ -4,13 +4,14 @@
 
 - [ ] Fix Micro text editor system clipboard integration
   - it's actually impossible to copy text out of Micro at all, you need a
-    workaround like `cat {filename}`
+    workaround like `cat {filename}` or tmux copy-mode
 - [ ] Setup Brewfile
 - [ ] Convert fish functions to shell scripts
 - [ ] Add "development servers" section to readme
 - [x] fix unicode symbols not working in tmux
   - [ ] Document
 - [ ] Test Remote SSH extension VS dev containers
+- [ ] Test mosh vs ssh
 - [x] Set up VSCode DevContainers extension
   - [ ] Add to readme
 - [x] Fix Homebrew install (not consistently working)
@@ -23,6 +24,34 @@
 - [x] Allocate more memory to VM and container
 
 ---
+
+## 20260428
+
+Today: Testing out Mosh and making tmux sessions more resilient.
+
+### mosh
+
+This was pretty simple, all I needed to do was install mosh on server (m4 desktop) and client (m2 air).
+Hit one snag with `mosh-server` not being in PATH. 
+The issue there was that homebrew binaries weren't  being added to PATH in non-interactive mode,
+which mosh uses to start up.
+
+Another issue... copying text from tmux no longer 'just works' in mosh.
+
+### tmux
+
+Tmux sessions were dying for me because I was unintentionally stopping and restarting my container routinely.
+I was habitually using `docker start -ai profilename fish`, 
+because it conveniently worked whether or not the container was running.
+But because that command includes the `-a` attach flag, `exit` was
+stopping the terminal and container together. Oops!
+
+The solution:
+- Start detached with `docker compose up -d <profilename>`
+- Spawn new terminals with `docker compose exec <profilename> fish`
+  - `compose` here is optional, works the same either way.
+  - Of course, you can sub in `bash` or any other installed shell of your choice here.
+- Exit spawned terminals with `exit`, which only ends that `exec` process, and doesn't stop the container
 
 ## 20260202
 
