@@ -95,13 +95,13 @@ docker run -it -m 8g -p 3000:3000 --name {container-name} airlock
 
 #### a. With Docker Compose
 
-With your chosen profile already running detached, run:
+With your chosen service already running detached, run:
 
 ```
 docker-compose exec {profile} {shell}
 ```
 
-In my case, I want to create a terminal in the `me` profile running `fish` shell:
+In my case, I want to create a terminal in the `me` service running `fish` shell:
 
 ```
 docker-compose exec me fish
