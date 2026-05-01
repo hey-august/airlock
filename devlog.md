@@ -11,7 +11,8 @@
 - [x] fix unicode symbols not working in tmux
   - [ ] Document
 - [ ] Test Remote SSH extension VS dev containers
-- [ ] Test mosh vs ssh
+- [ ] Figure out why tmux doesn't load `~/.config/tmux/.tmux.conf` on startup
+- [x] Test mosh vs ssh
 - [x] Set up VSCode DevContainers extension
   - [ ] Add to readme
 - [x] Fix Homebrew install (not consistently working)
