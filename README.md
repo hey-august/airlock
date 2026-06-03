@@ -166,9 +166,8 @@ cat /root/.ssh/id_ed25519.pub
 
 ### Claude Code
 
-The Dockerfile installed Claude Code for you.
-
-Run `claude` to setup and authenticate Claude as normal.
+Install using the official `curl` oneliner from Anthropic. 
+Then run `claude` to setup and authenticate Claude as normal.
 
 Once Claude has been authenticated, you can copy its config out of the container
 with the following command. This way, you can copy in your auth after future
@@ -176,10 +175,10 @@ image rebuilds.
 
 ```sh
 # Copy entire .claude folder
-docker cp {container-name}:/root/.claude ./claude-config/
+docker cp {CONTAINER-NAME}:/root/.claude ./claude-config/
 
 # Copy auth only
-docker cp {container-name}:/root/.claude/.credentials.json ./claude-config/
+docker cp {CONTAINER-NAME}:/root/.claude/.credentials.json ./claude-config/
 ```
 
 ## Changes and updates
@@ -192,20 +191,20 @@ Here are some examples of changes that would require an image rebuild:
 
 ### Image changes
 
-    - Switching the base image
+    - Switching the base image (ie., upgrading to a newer version of Debian)
     - Changing the working directory
 
 ### Runtime parameters
 
-Runtime parameters don't require a rebuilt image, but do require a new
-container:
+Runtime parameters don't require a rebuilt image, but they *do* require a new
+container.
 
     - Adding more RAM
     - Exposing different ports
     - Changing port mappings
     - Renaming the container
     - Adding volume mounts
-    - Changing CPU limits (not)
+    - Changing CPU limits
 
 ---
 
@@ -219,4 +218,5 @@ to a fresh Linux install!
 Here is an incomplete list:
 
 - Set git author identity (email and name)
-- Authentication with git
+- SSH key setup for git
+- 
