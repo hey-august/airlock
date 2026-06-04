@@ -77,4 +77,19 @@ can read or write to the file.
 
 4. Test
 
+If using SSH primarily to auth with GitHub, follow their 
+[instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
+for testing the SSH connection.
 
+```bash
+ssh -T git@github.com
+
+# or the verbose version:
+ssh -vT git@github.com
+```
+
+**Troubleshooting**
+
+Some issues I've hit in the past:
+- `git@github.com: Permission denied (publickey).` GitHub has a whole [guide](https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey)
+dedicated to this issue. In my case it's usually caused by the SSH key being in the wrong place (it has to be in `~/.ssh/`, which for me is `/airlock/.ssh`); or the key has a custom name that `ssh` doesn't know about.
