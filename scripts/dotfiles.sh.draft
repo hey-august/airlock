@@ -1,0 +1,11 @@
+# djakafljasdklfj
+cp airlock/config.fish /airlock/.config/fish/config.fish
+
+# tmux
+mkdir .config/tmux/
+dev@work ~> cp airlock/.config/tmux/tmux.conf /airlock/.config/tmux/
+
+
+# itt
+mkdir git
+cp airlock/.config/git/config.example /airlock/.config/git/config
