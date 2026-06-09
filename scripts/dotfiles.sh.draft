@@ -5,7 +5,9 @@ cp airlock/config.fish /airlock/.config/fish/config.fish
 mkdir .config/tmux/
 dev@work ~> cp airlock/.config/tmux/tmux.conf /airlock/.config/tmux/
 
-
-# itt
+# git
 mkdir git
 cp airlock/.config/git/config.example /airlock/.config/git/config
+
+# install claude
+curl -fsSL https://claude.ai/install.sh | bash
