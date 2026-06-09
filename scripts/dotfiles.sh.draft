@@ -5,6 +5,9 @@ cp airlock/config.fish /airlock/.config/fish/config.fish
 mkdir .config/tmux/
 dev@work ~> cp airlock/.config/tmux/tmux.conf /airlock/.config/tmux/
 
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+
 # git
 mkdir git
 cp airlock/.config/git/config.example /airlock/.config/git/config
