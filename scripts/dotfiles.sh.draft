@@ -14,3 +14,7 @@ cp airlock/.config/git/config.example /airlock/.config/git/config
 
 # install claude
 curl -fsSL https://claude.ai/install.sh | bash
+
+# install sudo, grant permissions to main user
+apt update && apt install -y sudo
+usermod -aG sudo dev
