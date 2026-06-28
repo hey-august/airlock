@@ -32,7 +32,7 @@ On my Macbook Air M2 with 24g RAM and 8 cores, I run:
 colima start -m 18 -c 6
 ```
 
-The `compose.yaml` file allocates 16g RAM, with a soft limit of 12g and 4g of swap in the VM.
+The `compose.yaml` file allocates 16g RAM, with a soft limit of 12g and 4g of swap in the VM. You'll want to adjust these numbers in tandem with the VM if setting up a container with more or less memory. I've found this setup is more than powerful enough for ~6 concurrent instances of Claude Code / OpenCode, as well as a bevy of other terminal applications and sometimes a VSCode server.
 
 ### 2. Build image
 
