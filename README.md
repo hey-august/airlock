@@ -7,10 +7,13 @@
 ## Design
 
 - **Lightweight:** Uses the official `node:20-slim` Debian-based image.
-- **No host filesystem access** The point is to prevent claude and other tools from
+- **No host filesystem access:** The point is to prevent Claude and other tools from
   being able to directly access your machine. As a result, we do not mount a
   volume.
 - **Long-running or ephemeral:** Useful for one-off Claude projects, or as a persistent remote workspace with months of uptime
+
+> [!WARNING]
+> Alpha, under active development. I daily drive this setup, but it needs work related to VM disk management for long-running containers. Host and container clients are under development. Proceed at your own risk.
 
 ## Quickstart
 
