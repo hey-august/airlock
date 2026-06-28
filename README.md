@@ -6,10 +6,11 @@
 
 ## Design
 
-- **Lightweight**: Uses the official `node:20-slim` Debian-based image.
-- **No filesystem access**: The point is to prevent claude and other tools from
+- **Lightweight:** Uses the official `node:20-slim` Debian-based image.
+- **No host filesystem access** The point is to prevent claude and other tools from
   being able to directly access your machine. As a result, we do not mount a
   volume.
+- **Long-running or ephemeral:** Useful for one-off Claude projects, or as a persistent remote workspace with months of uptime
 
 ## Quickstart
 
