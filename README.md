@@ -1,6 +1,6 @@
-<p style="text-align:center;">
-  <img alt="airlock logo" class="center" width="640" height="320" src="https://github.com/user-attachments/assets/86c25a27-faaf-4263-acb9-c475c2e776aa" />
-</p>
+<div align="center">
+  <img alt="airlock logo" width="640" height="320" src="https://github.com/user-attachments/assets/86c25a27-faaf-4263-acb9-c475c2e776aa" />
+</div>
 
 # `AI`rlock
 
