@@ -4,18 +4,53 @@
 
 # `AI`rlock
 
+Begun October 2025, this is my daily driver container sandbox. It began as a Dockerfile and a collection of shell scripts and aliases, and is evolving into an opinionated yet flexible management layer for long-lived, distributed containerized workspaces.
+
 ## Design
 
-- **Lightweight:** Uses the official `node:20-slim` Debian-based image.
-- **No host filesystem access:** The point is to prevent Claude and other tools from
-  being able to directly access your machine. As a result, we do not mount a
-  volume.
-- **Long-running or ephemeral:** Useful for one-off Claude projects, or as a persistent remote workspace with months of uptime
+It seems like everybody else who runs Claude in a box mounts volumes with project files that live on their host machine. This never made sense to me. Yes, it prevents Claude from directly `rm`ing your entire host filesystem, and it's convenient. But Claude can still write arbitrary code and run arbitrary commands on user directories. I wanted even more isolation. So I didn't just move Claude Code into a box, I moved my entire development workspace in too (tmux, neovim, etc) with a set of scripts to setup fresh containers the way I like them, and git for bringing in and committing out work.
+
+If the above seems like overkill, Airlock probably isn't for you!
+
+Airlock is built of **composable primitives** (Docker Compose, Debian container, Colima runtime on macOS). You can use Airlock as a one-time setup wizard **_or_** as a helper application for daily management. (In the future, optional host GUI applications will offer even more QOL features: easy drag-and-drop file transfer, glanceable diagnostics, quick controls, etc.)
+
+Airlock aims to be useful as a minimal home for one-off Claude projects, or as a full-fledged persistent remote workspace with months of uptime, and anywhere in between.
+
+## Functionality
+
+Over time I have found and eliminated many of the rough edges to working entirely within a totally isolated, long-lived container environment. This project attempts to make minimal interventions to handle those annoyances for you with sensible defaults, in ways that are exposed and tunable. Some of these core areas are:
+
+- User setup: Permissions and groups inherited by coding agent processes
+- Package managers: Airlock optionally installs Homebrew for the macOS crowd and irons out some Linuxbrew wrinkles
+- Port forwarding: Customizable port forward ranges, eg., for running webapps
+- Memory management: Linked presets for balanced allocation at the runtime and container level
+- Virtual disk trimming: Routinely reclaiming space on the sparse disk after file cleanup
+
+---
+
+## Roadmap
+
+**In progress** 
+- Switch from Docker (daemon) to Podman (rootless) - more secure
+- More robust memory management
+
+**Soon**
+- Core API and CLI in Go
+- MVP File transfer utility
+
+**Later**
+- Interactive firewall - approve/deny connection requests from the host, á la Little Snitch
+- Test distributed, mirrored instances via in-container Syncthing
+
+**Eventually**
+- Tested/documented Windows support via WSL runtime
+
+---
+
+## Quickstart
 
 > [!WARNING]
 > Alpha, under active development. I daily drive this setup, but it needs work related to VM disk management for long-running containers. Host and container clients are under development. Proceed at your own risk.
-
-## Quickstart
 
 **Requirements**
 
