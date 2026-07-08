@@ -33,10 +33,12 @@ Over time I have found and eliminated many of the rough edges to working entirel
 **In progress** 
 - Switch from Docker (daemon) to Podman (rootless) - more secure
 - More robust memory management
+- Shell configs for prompt indicator, simple aliases/functions, provisioning tasks
 
 **Soon**
 - Core API and CLI in Go
 - MVP File transfer utility
+- Linux testing
 
 **Later**
 - Interactive firewall - approve/deny connection requests from the host, á la Little Snitch
