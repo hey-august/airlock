@@ -3,13 +3,12 @@ brew "tpm"        # tmux package manager
 brew "fzf"
 brew "ripgrep"
 brew "rpl"      
+brew "neovim"
 
 # Additional stuff I like
 brew "lazygit"    # git TUI with nice diff views
-brew "countdown"  # timer
 brew "diskonaut"  # visualize files by disk size
 brew "fastfetch"  # look ma, Debian!
-brew "fish"       # my preferred shell
 brew "glow"       # pretty markdown reader
 brew "htop"		  # resource monitor
 brew "lf"         # file manager
