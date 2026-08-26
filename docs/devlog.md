@@ -27,6 +27,35 @@
 
 ---
 
+## 20260824
+
+Standing up a fresh container, steps and notes:
+- `docker-compose --profile work up -d` and `docker-compose exec work fish` like usual
+- copy in ssh keys as noted in provisioning.md
+- install claude
+- copy in `.config`, restart tmux and fish to take effect
+  - mouse mode didn't stay 'on' for tmux
+- clone repos
+  - this could be automated with a list and a simple script
+- seems like apt install worked but not homebrew stuff
+- tmux mouse mode is being super buggy for some reason too
+- git config didn't transfer
+- missing env variables (fern, gh)
+  - and when trying to set them, i get a new error:
+
+	```
+	dev@work ~> set -gx TOKEN_NAME 'token_goes_here'
+	error: Unable to open temporary file '/airlock/.config/fish/fishd.tmp.jszJhj': Permission denied
+	dev@work ~> error: Unable to open temporary file '/airlock/.config/fish/fishd.tmp.BfL2Qd': Permission denied
+	dev@work ~> error: Unable to open temporary file '/airlock/.config/fish/fishd.tmp.Q48JcF': Permission denied
+	dev@work ~> error: Unable to open temporary file '/airlock/.config/fish/fishd.tmp.1DmjZl': Permission denied
+	```
+	- to solve this i had to `exec` in as root and change ownership of `.config` and `.npm` to the `dev` user.
+  
+- more missing packages: fern
+- manually ran lvim install script, which worked ootb but needed lvim, not installed. 
+   - also the script should remind users to source their shell
+
 ## 20260428
 
 Today: Testing out Mosh and making tmux sessions more resilient.

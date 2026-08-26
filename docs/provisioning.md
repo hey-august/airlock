@@ -36,14 +36,16 @@ I recommend creating the key on your host machine and copying it into the contai
 You only need to copy in the private key.
 
 ```
-```
-```
 todo - commands
 generate key
 docker cp ~/.ssh/your_dedicated_key container:/.ssh/id_ed25519
 ```
 
 1. Configure key ownership and permissions
+
+- 20260824: I didn't need to do the below this time -
+  perhaps because the existing key already had the correct owner.
+  but the language above implies `docker cp` changes it anyway? 
 
 You'll then need to change ownership of the key so that your user can use it.
 This is because `docker cp` works as root, 
@@ -75,7 +77,7 @@ The important part is `-rw-------`, which in
 indicates that only the file owner (in this case, `dev`)
 can read or write to the file.
 
-4. Test
+1. Test
 
 If using SSH primarily to auth with GitHub, follow their 
 [instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection)
