@@ -31,3 +31,4 @@ if [ "$choice" = "y" ]; then
 	fish -c 'alias -s "NVIM_APPNAME=lvim nvim"'
 fi
 
+# todo: remind user to source their shell to use the alias
