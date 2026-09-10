@@ -53,8 +53,17 @@ Standing up a fresh container, steps and notes:
 	- to solve this i had to `exec` in as root and change ownership of `.config` and `.npm` to the `dev` user.
   
 - more missing packages: fern
-- manually ran lvim install script, which worked ootb but needed lvim, not installed. 
-   - also the script should remind users to source their shell
+- manually ran lvim install script, which only half worked ootb and needed lvim, not installed. 
+  - also the script should remind users to source their shell
+  - the aliases didn't work even after re-sourcing
+- probably nobody else would want to do this, but i authed gh cli this way this time:
+  - clear $GH_TOKEN (in fish: `set -e GH_TOKEN`), then `echo $GH_TOKEN | gh auth login --with-token` 
+  (how did passing the token via stdin work if i just cleared it...)
+- AGENTS.md symlink > CLAUDE.md: `ln -s ./AGENTS.md ~/.claude/CLAUDE.md`
+- need to manage the whole claude folder for skills and whatnot too. XDG home not yet supported so current workaround is to use CLAUDE_CONFIG_DIR env var.
+- tmux config isn't working - wait jk, the airlock version just wasn't updated with my new stuff
+- first symlink for CLAUDE.md didn't work. symlinks need absolute paths i guess.
+- env vars aren't persisting for some reason despite being `set -gx`. maybe i should stop using fish lowkey
 
 ## 20260428
 
