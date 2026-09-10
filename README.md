@@ -6,13 +6,17 @@
 
 Begun October 2025, this is my daily driver container sandbox. It began as a Dockerfile and a collection of shell scripts and aliases, and is evolving into an opinionated yet flexible management layer for long-lived, distributed containerized workspaces.
 
+For my purposes, AIrlock attempts to be a Linux work computer in a sandbox. 
+
 ## Design
 
-It seems like everybody else who runs Claude in a box mounts volumes with project files that live on their host machine. This never made sense to me. Yes, it prevents Claude from directly `rm`ing your entire host filesystem, and it's convenient. But Claude can still write arbitrary code and run arbitrary commands on user directories. I wanted even more isolation. So I didn't just move Claude Code into a box, I moved my entire development workspace in too (tmux, neovim, etc) with a set of scripts to setup fresh containers the way I like them, and git for bringing in and committing out work.
+**Why no volume mounts?** This is where AIrlock veers offroad compared to every other solution I've tried, so I'll address it first.
+
+It seems like everybody else who runs Claude in a box mounts volumes with project files that live on their host machine. This never made sense to me. Yes, it prevents Claude from directly `rm`ing your entire host filesystem, and it's convenient. But in that setup, Claude can still write arbitrary code and run arbitrary commands on user directories. I wanted even more isolation. So I didn't just move Claude Code into a box, I moved my entire development workspace in too (tmux, neovim, etc) with a set of scripts to setup fresh containers the way I like them, and git for bringing in and committing out work.
 
 If the above seems like overkill, Airlock probably isn't for you!
 
-Airlock is built of **composable primitives** (Docker Compose, Debian container, Colima runtime on macOS). You can use Airlock as a one-time setup wizard **_or_** as a helper application for daily management. (In the future, optional host GUI applications will offer even more QOL features: easy drag-and-drop file transfer, glanceable diagnostics, quick controls, etc.)
+Airlock is built of **composable primitives** (Docker Compose or Podman, Debian container, Colima runtime on macOS). You can use Airlock as a one-time setup wizard **_or_** as a helper application for daily management. (In the future, optional host GUI applications will offer even more QOL features: easy drag-and-drop file transfer, glanceable diagnostics, quick controls, etc.)
 
 Airlock aims to be useful as a minimal home for one-off Claude projects, or as a full-fledged persistent remote workspace with months of uptime, and anywhere in between.
 
@@ -94,7 +98,7 @@ docker-compose build
 docker build -t airlock .
 ```
 
-> [!WARNING]\
+> [!WARNING]
 > If anything fails in the image build, the image won't be correctly tagged with
 > the 'airlock' name, and the `run` command below won't be able to find the
 > image based on that name.
@@ -132,7 +136,7 @@ docker run -it -m 8g -p 3000:3000 --name {container-name} airlock
 | `-p 3000:3000`     | Expose any ports you want to use for development.                                                                        |
 | `{container-name}` | Your desired container name. In `compose.yaml`, 
 
-> [!IMPORTANT]\
+> [!IMPORTANT]
 > Replace `<container-name>` with the name of the project for which you intend
 > to use this container.
 
