@@ -109,16 +109,10 @@ Replace `airlock` with your desired image name, if different.
 
 #### a. With Compose
 
-Start the container in detached mode with a specified profile.
+Start a service in detached mode. I have two, `work` and `me`:
 
 ```
-docker-compose --profile {profile} up -d
-```
-
-I have two profiles, `work` and `me`. For this example, let's start the `me` profile:
-
-```
-docker-compose --profile me up -d
+docker-compose up -d me
 ```
 
 #### b. With `docker`
@@ -147,7 +141,7 @@ docker run -it -m 8g -p 3000:3000 --name {container-name} airlock
 With your chosen service already running detached, run:
 
 ```
-docker-compose exec {profile} {shell}
+docker-compose exec {service} {shell}
 ```
 
 In my case, I want to create a terminal in the `me` service running `fish` shell:
@@ -229,6 +223,10 @@ docker cp {CONTAINER-NAME}:/root/.claude ./claude-config/
 # Copy auth only
 docker cp {CONTAINER-NAME}:/root/.claude/.credentials.json ./claude-config/
 ```
+
+### Persistence
+
+`/airlock` and `/home/linuxbrew` are named volumes per service, so they survive rebuilds. To move them to a new container or Mac, see [docs/migrate.md](docs/migrate.md).
 
 ## Changes and updates
 
