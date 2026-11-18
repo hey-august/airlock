@@ -1,46 +1,52 @@
+x-airlock: &airlock
+
+  #===== Base container ======#
+  build: .                    # - dockerfile location
+  image: airlock              #
+  user: dev                   #
+  hostname: airlock           # - For a cleaner prompt
+  working_dir: /airlock       #
+  #                           #
+  # resources                 #
+  mem_limit: 16g              #
+  mem_reservation: 12g        # - Soft limit - Docker will try to keep it here
+  memswap_limit: 20g          # - mem + swap total (gives 4g swap headroom)
+  oom_kill_disable: false     # - Better to kill a process than freeze
+  stop_grace_period: 30s      #
+  init: true                  # - Run tini - reaps zombie processes, helps with orphans
+  #                           #
+  # terminal                  #
+  stdin_open: true            # - Keep STDIN open
+  tty: true                   # - pseudo-TTY
+  #===========================#
+
 services:
-
-  airlock:
-
-    #===== Base container ======#
-    build: .                    # - dockerfile location
-    image: airlock              #
-    user: dev                   #
-    hostname: airlock           # - For a cleaner prompt
-    working_dir: /airlock       #
-    #                           #
-    # resources                 #
-    mem_limit: 16g              #
-    mem_reservation: 12g        # - Soft limit - Docker will try to keep it here
-    memswap_limit: 20g          # - mem + swap total (gives 4g swap headroom)
-    oom_kill_disable: false     # - Better to kill a process than freeze
-    stop_grace_period: 30s      #
-    init: true                  # - Run tini - reaps zombie processes, helps with orphans
-    #                           #
-    # terminal                  #
-    stdin_open: true            # - Keep STDIN open
-    tty: true                   # - pseudo-TTY
-    #===========================#
 
   me:
   
-    extends:
-      service: airlock
+    <<: *airlock
     container_name: me.airlock
     hostname: me.airlock
     ports:
       - "3020-3035:3000-3015" 
-    profiles:
-      - me
+    volumes:
+      - me-home:/airlock
+      - me-brew:/home/linuxbrew
   
   work:
   
-    extends:
-      service: airlock
+    <<: *airlock
     container_name: work.airlock
     hostname: work.airlock
     ports:                    # container:host port mappings
       - "3000-3015:3000-3015" # App ports range
       - "9229:9229"           # Node debugger
-    profiles:
-      - work
+    volumes:
+      - work-home:/airlock
+      - work-brew:/home/linuxbrew
+
+volumes:
+  me-home:
+  me-brew:
+  work-home:
+  work-brew:
